@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wieso machi so was</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81);
+      color: white;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 650px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+    }
+
+    .intro {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #dbeafe;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 14px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #yesBtn {
+      background: linear-gradient(90deg, #ec4899, #8b5cf6);
+      color: white;
+      box-shadow: 0 10px 20px rgba(236, 72, 153, 0.25);
+    }
+
+    #yesBtn:hover {
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    #noBtn {
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.18);
+      position: absolute;
+      left: 58%;
+      top: 20px;
+    }
+
+    .result {
+      margin-top: 10px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 22px;
+      display: none;
+      text-align: left;
+      line-height: 1.7;
+      color: #f8fafc;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .result h2 {
+      color: #f9a8d4;
+      margin-bottom: 10px;
+    }
+
+    .result ul {
+      margin: 10px 0 0 20px;
+    }
+
+    .tiny-note {
+      margin-top: 16px;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .buttons { height: 120px; }
+      #noBtn { left: 55%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1> Hoi :)</h1>
+    <p class="intro">
+      Machemers ganz kurz<br>
+      Bi sehr lustig und cha koche😌<br>
+      Ha bruni Haar und bruni Auge, ha im August Geburtstag also bini Sternzeiche Leo<br>
+	  Bi nid so fan vo Film sondern lueg lieber Serie<br>
+	  Mis Lieblingsgetränk isch Fanta Grape 🍇<br>
+	  Mini Lieblingsfarb isch violett und mini Lielingstier sind Schaf
+      <strong>Würsch gern meh wüsse?</strong>
+    </p>
+
+    <div class="buttons" id="buttonArea">
+      <button id="yesBtn">Ja bi interessiert? 👀</button>
+      <button id="noBtn">Nei nei scho guet 😅</button>
+    </div>
+
+    <div class="result" id="resultBox">
+      <h2>Okay okay also chli meh über mi 😺</h2>
+      <p>
+        Nur so d highlights:
+      </p>
+      <ul>
+        <li>Bi sehr Mathe und Programmiere orientiert (offesichtlich)</li>
+        <li>Cha Rubiks Cube in unter enere Minute löse und ha e Chess Rating vo 1000</li>
+        <li>Bi absolut unschlagbar in Mario Kart 😼</li>
+		<li>Mach viel Sport und tue mi au defür isetze</li>
+		<li>Ich lieb Ferie am Meer (will besser werde im Surfe), lieb aber au i de Berge wandere</li>
+        <li>Ha früener Fuessball imene Verein gspielt (rat mal welli Position und wieviel Goal)</li>
+      </ul>
+      <p style="margin-top: 14px;">
+        Ja das isch au glaubs scho alles gsi
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const resultBox = document.getElementById('resultBox');
+    const buttonArea = document.getElementById('buttonArea');
+
+    yesBtn.addEventListener('click', () => {
+      resultBox.style.display = 'block';
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    function moveNoButton() {
+      const areaWidth = buttonArea.clientWidth;
+      const areaHeight = buttonArea.clientHeight;
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+
+      const maxX = Math.max(0, areaWidth - btnWidth);
+      const maxY = Math.max(0, areaHeight - btnHeight);
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.left = randomX + 'px';
+      noBtn.style.top = randomY + 'px';
+    }
+
+    noBtn.addEventListener('mouseenter', moveNoButton);
+    noBtn.addEventListener('click', moveNoButton);
+    noBtn.addEventListener('touchstart', moveNoButton);
+  </script>
+</body>
+</html>
